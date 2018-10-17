@@ -1,7 +1,6 @@
 @startuml
 storage "Update: ActiveObject" as uao {
 }
-uao ..> f: Future
 
 package Java {
     interface f as "Future"<T> {
@@ -48,6 +47,7 @@ uao ..> s: Scheduler
 uao ..> oga: Service
 uao ..> og: Servant
 uao ..> vmi: Concrete MI
+uao ..> f: Future
 
 umi ..|> cb
 vmi ..|> cb
