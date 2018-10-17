@@ -1,6 +1,6 @@
 package fr.istic.gm.aodp.activeobject.impl;
 
-import fr.istic.gm.aodp.activeobject.ObservatorGenerator;
+import fr.istic.gm.aodp.activeobject.ObserverGenerator;
 
-public class Monitor implements ObservatorGenerator {
+public class Monitor implements ObserverGenerator {
 }
