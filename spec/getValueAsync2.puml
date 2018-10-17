@@ -1,0 +1,34 @@
+@startuml
+box "Future"
+    participant "f : Future" as f
+end box
+box "Servant"
+    participant "d: Diffusion" as d
+    participant "g: Generator" as g
+end box
+box "Method Invocation"
+    participant "mi : GetValueCallable" as mi
+end box
+box "Scheduler"
+    participant "s : Scheduler" as s
+end box
+activate g
+activate s
+s -> mi: call()
+activate mi
+mi -> g: getValue(m)
+deactivate mi
+g -> d: getValue(m)
+deactivate g
+activate d
+d --> g: v
+deactivate d
+activate g
+g --> mi: v
+activate mi
+mi --> s: v
+deactivate mi
+s -> f: setDone()
+activate f
+deactivate f
+@enduml

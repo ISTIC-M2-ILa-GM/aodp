@@ -1,0 +1,21 @@
+@startuml
+box "Client"
+    participant "g : Generator" as g
+end box
+box "Scheduler"
+    participant "s : Scheduler" as s
+end box
+box "Future"
+    participant "f : Future" as f
+end box
+
+activate s
+activate g
+g -> f: synchronise()
+deactivate g
+activate f
+s -> f: setDone()
+f --> g
+deactivate f
+activate g
+@enduml

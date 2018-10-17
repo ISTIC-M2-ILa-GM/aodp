@@ -1,0 +1,114 @@
+@startuml
+storage "Update: ActiveObject" as uao {
+}
+uao ..> f: Future
+
+package Java {
+    interface f as "Future"<T> {
+        +synchronize()
+        +get()
+    }
+    interface s as "ScheduledExecutorService" {
+        +schedule(c: callable, timeout: Duration)
+    }
+    interface cb as "Callable"<T> {
+        +call()
+    }
+}
+class c as "Canal" {
+    +update(g: Generator): Future
+    +getValue(): Future
+}
+interface ga as "GeneratorAsync" {
+    +getValue(): Future
+}
+interface oga as "ObsGeneratorAsync" {
+    +update(g: Generator): Future
+}
+interface g as "Generator" {
+    +getValue(): int
+}
+class umi as "UpdateCallable" {
+    +call()
+}
+class vmi as "GetUpdateCallable" {
+    +call()
+}
+class m as "Monitor" {
+    +update(g: Generator)
+}
+interface og as "ObsGenerator" {
+    +update(g: Generator)
+}
+
+uao ..> c: Proxy
+uao ..> cb: Method Invocator
+uao ..> g: Client
+uao ..> s: Scheduler
+uao ..> oga: Service
+uao ..> og: Servant
+uao ..> vmi: Concrete MI
+
+umi ..|> cb
+vmi ..|> cb
+c ..|> ga
+c ..|> oga
+m ..|> og
+newpage
+
+storage "GetValue: ActiveObject" as vao {
+}
+
+package Java {
+    interface f as "Future"<T> {
+        +synchronize()
+        +get()
+    }
+    interface s as "ScheduledExecutorService" {
+        +schedule(c: callable, timeout: Duration)
+    }
+    interface cb as "Callable"<T> {
+        +call()
+    }
+}
+class c as "Canal" {
+    +update(g: Generator): Future
+    +getValue(): Future
+}
+interface ga as "GeneratorAsync" {
+    +getValue(): Future
+}
+interface oga as "ObsGeneratorAsync" {
+    +update(g: Generator): Future
+}
+interface g as "Generator" {
+    +getValue(): int
+}
+class umi as "UpdateCallable" {
+    +call()
+}
+class vmi as "GetUpdateCallable" {
+    +call()
+}
+class m as "Monitor" {
+    +update(g: Generator)
+}
+interface og as "ObsGenerator" {
+    +update(g: Generator)
+}
+
+vao ..> c: Proxy
+vao ..> cb: Method Invocator
+vao ..> og: Client
+vao ..> s: Scheduler
+vao ..> f: Future
+vao ..> g: Servant
+vao ..> ga: Service
+vao ..> umi: Concrete MI
+
+umi ..|> cb
+vmi ..|> cb
+c ..|> ga
+c ..|> oga
+m ..|> og
+@enduml

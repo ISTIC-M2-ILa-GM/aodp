@@ -1,0 +1,23 @@
+@startuml
+box "Scheduler"
+participant "s : Scheduler" as s
+end box
+box "Proxy"
+    participant "c: canal" as c
+end box
+box "Client"
+    participant "m : Monitor" as m
+end box
+
+activate m
+activate c
+activate s
+m -> c: getValue(m)
+deactivate m
+create "mi : GetValueCallable" as mi
+c -> mi: create()
+c -> s: schedule(mi)
+s --> c: f
+c --> m: f
+activate m
+@enduml

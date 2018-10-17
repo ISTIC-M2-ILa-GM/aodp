@@ -1,0 +1,27 @@
+@startuml
+box "Scheduler"
+    participant "s : Scheduler" as s
+end box
+box "Future"
+    participant "f : Future" as f
+end box
+box "Client"
+    participant "m : Monitor" as m
+end box
+
+activate s
+activate m
+m -> f: synchronise()
+deactivate m
+activate f
+s -> f: setDone()
+f --> m
+deactivate f
+activate m
+m -> f: get()
+deactivate m
+activate f
+f --> m: v
+deactivate f
+activate m
+@enduml
