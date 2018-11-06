@@ -5,5 +5,10 @@ package fr.istic.gm.aodp.activeobject;
  */
 public interface TrueValueGenerator {
 
+    /**
+     * Get the true value
+     *
+     * @return the value
+     */
     Integer getTrueValue();
 }
