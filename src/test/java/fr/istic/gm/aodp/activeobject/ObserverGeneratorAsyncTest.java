@@ -27,6 +27,9 @@ public class ObserverGeneratorAsyncTest {
     private ObserverGeneratorAsync observerGeneratorAsync;
 
     @Mock
+    private ObserverGenerator mockObserverGenerator;
+
+    @Mock
     private Generator mockGenerator;
 
     @Mock
@@ -37,7 +40,7 @@ public class ObserverGeneratorAsyncTest {
 
     @Before
     public void setUp() {
-        observerGeneratorAsync = new Canal(mockScheduledExecutorService, 10L);
+        observerGeneratorAsync = new Canal(mockObserverGenerator, mockScheduledExecutorService, 10L);
     }
 
     @Test
