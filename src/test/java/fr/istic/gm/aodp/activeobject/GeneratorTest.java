@@ -60,7 +60,7 @@ public class GeneratorTest {
     @Test
     public void shouldAddAnObserver() {
 
-        ObserverGenerator observerGenerator = new Monitor();
+        ObserverGeneratorAsync observerGenerator = new Canal();
 
         generator.attach(observerGenerator);
 
@@ -70,7 +70,7 @@ public class GeneratorTest {
     @Test
     public void shouldRemoveAnObserver() {
 
-        ObserverGenerator observerGenerator = new Monitor();
+        ObserverGeneratorAsync observerGenerator = new Canal();
 
         generator.attach(observerGenerator);
         generator.detach(observerGenerator);
