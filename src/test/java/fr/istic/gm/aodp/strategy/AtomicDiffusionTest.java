@@ -1,4 +1,4 @@
-package fr.istic.gm.aodp.activeobject.strategy;
+package fr.istic.gm.aodp.strategy;
 
 import fr.istic.gm.aodp.activeobject.Generator;
 import fr.istic.gm.aodp.activeobject.impl.Canal;
