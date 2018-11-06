@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="fr.istic.gm.aodp.controllers.MainController">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.istic.gm.aodp.controllers.MainController">
     <children>
         <VBox prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #E9E9E9;">
             <children>
@@ -26,20 +25,20 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <RadioButton mnemonicParsing="false" text="Atomic">
+                        <RadioButton mnemonicParsing="false" selected="true" text="Atomic">
                             <HBox.margin>
                                 <Insets left="8.0" right="8.0" />
                             </HBox.margin>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="broadcast" />
-                     </toggleGroup>
+                            <toggleGroup>
+                                <ToggleGroup fx:id="broadCastMethod" />
+                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Causal" toggleGroup="$broadcast">
+                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Causal" toggleGroup="$broadCastMethod">
                             <HBox.margin>
                                 <Insets left="8.0" right="8.0" />
                             </HBox.margin>
                         </RadioButton>
-                        <RadioButton layoutX="99.0" layoutY="10.0" mnemonicParsing="false" text="Sequential" toggleGroup="$broadcast">
+                        <RadioButton layoutX="99.0" layoutY="10.0" mnemonicParsing="false" text="Sequential" toggleGroup="$broadCastMethod">
                             <HBox.margin>
                                 <Insets left="8.0" right="8.0" />
                             </HBox.margin>
