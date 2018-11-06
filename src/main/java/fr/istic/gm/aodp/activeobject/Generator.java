@@ -24,19 +24,19 @@ public interface Generator {
      *
      * @return the observers
      */
-    List<ObserverGenerator> getObservers();
+    List<ObserverGeneratorAsync> getObservers();
 
     /**
      * Attach an observer
      *
      * @param observerGenerator the observer
      */
-    void attach(ObserverGenerator observerGenerator);
+    void attach(ObserverGeneratorAsync observerGenerator);
 
     /**
      * Attach an observer
      *
      * @param observerGenerator the observer
      */
-    void detach(ObserverGenerator observerGenerator);
+    void detach(ObserverGeneratorAsync observerGenerator);
 }

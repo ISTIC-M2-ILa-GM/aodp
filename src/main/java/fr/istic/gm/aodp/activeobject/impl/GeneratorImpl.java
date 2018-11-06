@@ -2,6 +2,7 @@ package fr.istic.gm.aodp.activeobject.impl;
 
 import fr.istic.gm.aodp.activeobject.Generator;
 import fr.istic.gm.aodp.activeobject.ObserverGenerator;
+import fr.istic.gm.aodp.activeobject.ObserverGeneratorAsync;
 import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
 import fr.istic.gm.aodp.strategy.Diffusion;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class GeneratorImpl implements Generator, TrueValueGenerator {
     private Integer value;
 
     @Getter
-    private List<ObserverGenerator> observers = new ArrayList<>();
+    private List<ObserverGeneratorAsync> observers = new ArrayList<>();
 
     @Override
     public void generate() {
@@ -29,12 +30,12 @@ public class GeneratorImpl implements Generator, TrueValueGenerator {
     }
 
     @Override
-    public void attach(ObserverGenerator observerGenerator) {
+    public void attach(ObserverGeneratorAsync observerGenerator) {
         observers.add(observerGenerator);
     }
 
     @Override
-    public void detach(ObserverGenerator observerGenerator) {
+    public void detach(ObserverGeneratorAsync observerGenerator) {
         observers.remove(observerGenerator);
     }
 
