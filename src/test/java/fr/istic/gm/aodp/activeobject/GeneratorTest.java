@@ -1,8 +1,6 @@
 package fr.istic.gm.aodp.activeobject;
 
-import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.activeobject.impl.GeneratorImpl;
-import fr.istic.gm.aodp.activeobject.impl.Monitor;
 import fr.istic.gm.aodp.strategy.Diffusion;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -23,6 +22,9 @@ public class GeneratorTest {
 
     @Mock
     private Diffusion mockDiffusion;
+
+    @Mock
+    private ObserverGeneratorAsync mockObserverGeneratorAsync;
 
     @Before
     public void setUp() {
@@ -60,20 +62,18 @@ public class GeneratorTest {
     @Test
     public void shouldAddAnObserver() {
 
-        ObserverGeneratorAsync observerGenerator = new Canal();
-
-        generator.attach(observerGenerator);
+        generator.attach(mockObserverGeneratorAsync);
 
         assertThat(generator.getObservers(), hasSize(1));
+
+        assertThat(generator.getObservers().get(0), equalTo(mockObserverGeneratorAsync));
     }
 
     @Test
     public void shouldRemoveAnObserver() {
 
-        ObserverGeneratorAsync observerGenerator = new Canal();
-
-        generator.attach(observerGenerator);
-        generator.detach(observerGenerator);
+        generator.attach(mockObserverGeneratorAsync);
+        generator.detach(mockObserverGeneratorAsync);
 
         assertThat(generator.getObservers(), hasSize(0));
     }
