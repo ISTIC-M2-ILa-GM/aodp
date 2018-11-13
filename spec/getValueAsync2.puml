@@ -16,9 +16,9 @@ activate g
 activate s
 s -> mi: call()
 activate mi
-mi -> g: getValue(m)
+mi -> g: getValue(c)
 deactivate mi
-g -> d: getValue(m)
+g -> d: getValue(c)
 deactivate g
 activate d
 d --> g: v

@@ -15,7 +15,7 @@ activate m
 activate s
 s -> mi: call()
 activate mi
-mi -> m: update(g)
+mi -> m: update(c)
 == Go to getValueAsync1 ==
 deactivate mi
 m --> mi
