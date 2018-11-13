@@ -1,6 +1,8 @@
 @startuml
-storage "Update: ActiveObject" as uao {
-}
+hide empty members
+allow_mixing
+
+usecase "Update: ActiveObject" as uao
 
 package Java {
     interface f as "Future"<T> {
@@ -55,9 +57,10 @@ c ..|> ga
 c ..|> oga
 m ..|> og
 newpage
+hide empty members
+allow_mixing
 
-storage "GetValue: ActiveObject" as vao {
-}
+usecase "GetValue: ActiveObject" as vao
 
 package Java {
     interface f as "Future"<T> {
