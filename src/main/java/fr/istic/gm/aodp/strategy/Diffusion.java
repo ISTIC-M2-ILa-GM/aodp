@@ -1,6 +1,8 @@
 package fr.istic.gm.aodp.strategy;
 
 import fr.istic.gm.aodp.activeobject.Generator;
+import fr.istic.gm.aodp.activeobject.GeneratorAsync;
+import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -16,7 +18,7 @@ public interface Diffusion {
      * @param generator the generator to diffuse
      * @return the future
      */
-    List<Future<Integer>> execute(Generator generator);
+    List<Future<Integer>> execute(TrueValueGenerator generator);
 
     /**
      * Verify the diffusion
@@ -29,5 +31,5 @@ public interface Diffusion {
      * @param generator the generator
      * @return the value
      */
-    Integer getValue(Generator generator);
+    Integer getValue(GeneratorAsync generator);
 }

@@ -1,9 +1,6 @@
 package fr.istic.gm.aodp.activeobject.impl;
 
-import fr.istic.gm.aodp.activeobject.Generator;
-import fr.istic.gm.aodp.activeobject.ObserverGenerator;
-import fr.istic.gm.aodp.activeobject.ObserverGeneratorAsync;
-import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
+import fr.istic.gm.aodp.activeobject.*;
 import fr.istic.gm.aodp.strategy.Diffusion;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +12,7 @@ import java.util.List;
  * The generator implementation
  */
 @RequiredArgsConstructor
-public class GeneratorImpl implements Generator, TrueValueGenerator {
+public class GeneratorImpl implements TrueValueGenerator {
 
     private final Diffusion diffusion;
 
@@ -40,8 +37,8 @@ public class GeneratorImpl implements Generator, TrueValueGenerator {
     }
 
     @Override
-    public Integer getValue() {
-        return diffusion.getValue(this);
+    public Integer getValue(GeneratorAsync generatorAsync) {
+        return diffusion.getValue(generatorAsync);
     }
 
     @Override

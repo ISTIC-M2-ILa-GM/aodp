@@ -8,13 +8,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UpdateCallableImpl implements UpdateCallable {
 
-    private Generator generator;
+    private Canal canal;
 
     private ObserverGenerator observerGenerator;
 
     @Override
     public Integer call() {
-        observerGenerator.update(generator);
+        observerGenerator.update(canal);
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package fr.istic.gm.aodp.strategy.impl;
 
-import fr.istic.gm.aodp.activeobject.Generator;
+import fr.istic.gm.aodp.activeobject.GeneratorAsync;
+import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
 import fr.istic.gm.aodp.strategy.Diffusion;
 
 import java.util.ArrayList;
@@ -11,9 +12,12 @@ import java.util.concurrent.Future;
  * The Atomic Diffusion
  */
 public class AtomicDiffusion implements Diffusion {
+    private Integer value;
 
     @Override
-    public List<Future<Integer>> execute(Generator generator) {
+    public List<Future<Integer>> execute(TrueValueGenerator generator) {
+        this.value = generator.getTrueValue();
+
         List<Future<Integer>> futures = new ArrayList<>();
         generator.getObservers().forEach(o -> futures.add(o.update(generator)));
         return futures;
@@ -25,7 +29,7 @@ public class AtomicDiffusion implements Diffusion {
     }
 
     @Override
-    public Integer getValue(Generator generator) {
-        return null;
+    public Integer getValue(GeneratorAsync generator) {
+        return this.value;
     }
 }
