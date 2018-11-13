@@ -29,10 +29,10 @@ interface oga as "ObsGeneratorAsync" {
 interface g as "Generator" {
     +getValue(): int
 }
-class umi as "UpdateCallable" {
+class umi as "GetValueCallable" {
     +call()
 }
-class vmi as "GetUpdateCallable" {
+class vmi as "UpdateCallable" {
     +call()
 }
 class m as "Monitor" {
@@ -87,10 +87,10 @@ interface oga as "ObsGeneratorAsync" {
 interface g as "Generator" {
     +getValue(): int
 }
-class umi as "UpdateCallable" {
+class umi as "GetValueCallable" {
     +call()
 }
-class vmi as "GetUpdateCallable" {
+class vmi as "UpdateCallable" {
     +call()
 }
 class m as "Monitor" {
