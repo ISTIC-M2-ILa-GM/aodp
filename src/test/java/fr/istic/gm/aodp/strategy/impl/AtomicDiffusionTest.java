@@ -1,6 +1,7 @@
 package fr.istic.gm.aodp.strategy.impl;
 
 import fr.istic.gm.aodp.activeobject.Generator;
+import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
 import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.strategy.DiffusionException;
 import fr.istic.gm.aodp.strategy.impl.AtomicDiffusion;
@@ -33,7 +34,7 @@ public class AtomicDiffusionTest {
     private Canal mockCanal;
 
     @Mock
-    private Generator mockGenerator;
+    private TrueValueGenerator mockGenerator;
 
     @Mock
     private Future<Integer> mockFuture;
