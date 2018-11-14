@@ -22,7 +22,7 @@ public class Canal implements GeneratorAsync, ObserverGeneratorAsync {
 
     @Override
     public Future<Integer> update(Generator generator) {
-        UpdateCallableImpl mi = new UpdateCallableImpl(generator, observerGenerator);
+        UpdateCallableImpl mi = new UpdateCallableImpl(this, observerGenerator);
         return scheduledExecutorService.schedule(mi, customRetard, TimeUnit.SECONDS);
     }
 }
