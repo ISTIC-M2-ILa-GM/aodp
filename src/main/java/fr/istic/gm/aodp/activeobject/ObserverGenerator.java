@@ -8,7 +8,7 @@ public interface ObserverGenerator {
     /**
      * Update the observer
      *
-     * @param generator the generator observed
+     * @param generatorAsync the generator observed
      */
-    void update(Generator generator);
+    void update(GeneratorAsync generatorAsync);
 }

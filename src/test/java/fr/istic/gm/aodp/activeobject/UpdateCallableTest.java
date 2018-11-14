@@ -1,5 +1,6 @@
 package fr.istic.gm.aodp.activeobject;
 
+import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.activeobject.impl.UpdateCallableImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,14 +16,14 @@ public class UpdateCallableTest {
     private UpdateCallable updateCallable;
 
     @Mock
-    private Generator mockGenerator;
+    private Canal mockCanal;
 
     @Mock
     private ObserverGenerator mockObserverGenerator;
 
     @Before
     public void setUp() {
-        updateCallable = new UpdateCallableImpl(mockGenerator, mockObserverGenerator);
+        updateCallable = new UpdateCallableImpl(mockCanal, mockObserverGenerator);
     }
 
     @Test
@@ -30,6 +31,6 @@ public class UpdateCallableTest {
 
         updateCallable.call();
 
-        verify(mockObserverGenerator).update(mockGenerator);
+        verify(mockObserverGenerator).update(mockCanal);
     }
 }
