@@ -17,7 +17,7 @@ public interface Generator {
      *
      * @return the value
      */
-    Integer getValue();
+    Integer getValue(GeneratorAsync generatorAsync);
 
     /**
      * Get the list of observers
