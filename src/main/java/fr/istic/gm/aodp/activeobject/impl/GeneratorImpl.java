@@ -18,6 +18,7 @@ public class GeneratorImpl implements GeneratorDiffusion {
     @Getter
     private final Diffusion diffusion;
 
+    @Getter
     private Integer value;
 
     @Getter
@@ -36,11 +37,6 @@ public class GeneratorImpl implements GeneratorDiffusion {
     @Override
     public void detach(ObserverGeneratorAsync observerGenerator) {
         observers.remove(observerGenerator);
-    }
-
-    @Override
-    public Integer getValue() {
-        return value;
     }
 
     /**

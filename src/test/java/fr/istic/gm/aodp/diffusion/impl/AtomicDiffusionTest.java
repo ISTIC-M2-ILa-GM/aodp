@@ -3,6 +3,8 @@ package fr.istic.gm.aodp.diffusion.impl;
 import fr.istic.gm.aodp.activeobject.GeneratorAsync;
 import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.diffusion.DiffusionException;
+import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
+import fr.istic.gm.aodp.domain.Generator;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,7 +37,7 @@ public class AtomicDiffusionTest {
     private Canal mockCanal;
 
     @Mock
-    private TrueValueGenerator mockGenerator;
+    private GeneratorDiffusion mockGenerator;
 
     @Mock
     private Future<Integer> mockFuture;

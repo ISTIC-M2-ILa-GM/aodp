@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GeneratorTest {
 
-    private TrueValueGenerator generator;
+    private GeneratorImpl generator;
 
     @Mock
     private Diffusion mockDiffusion;
@@ -37,11 +37,11 @@ public class GeneratorTest {
     @Test
     public void shouldGenerateAValue() {
 
-        assertThat(generator.getTrueValue(), nullValue());
+        assertThat(generator.getValue(), nullValue());
 
         generator.generate();
 
-        assertThat(generator.getTrueValue(), notNullValue());
+        assertThat(generator.getValue(), notNullValue());
     }
 
     @Test
@@ -77,13 +77,5 @@ public class GeneratorTest {
         generator.detach(mockObserverGeneratorAsync);
 
         assertThat(generator.getObservers(), hasSize(0));
-    }
-
-    @Test
-    public void shouldGetDiffusionValue() {
-
-        generator.getValue(mockGeneratorAsync);
-
-        verify(mockDiffusion).getValue(mockGeneratorAsync);
     }
 }

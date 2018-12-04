@@ -1,6 +1,7 @@
 package fr.istic.gm.aodp.activeobject;
 
 import fr.istic.gm.aodp.activeobject.impl.Canal;
+import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import fr.istic.gm.aodp.domain.Generator;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class ObserverGeneratorAsyncTest {
     private ObserverGenerator mockObserverGenerator;
 
     @Mock
-    private Generator mockGenerator;
+    private GeneratorDiffusion mockGenerator;
 
     @Mock
     private ScheduledExecutorService mockScheduledExecutorService;
