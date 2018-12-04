@@ -3,21 +3,30 @@ package fr.istic.gm.aodp.activeobject.impl;
 import fr.istic.gm.aodp.activeobject.GeneratorAsync;
 import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
+import fr.istic.gm.aodp.enums.ChartIdentifier;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
+@RequiredArgsConstructor
+@Slf4j
 public class MonitorImpl implements Monitor {
-    private List<MonitorObserver> monitorObserverList;
+    private List<MonitorObserver> monitorObserverList = new ArrayList<>();
 
-    public MonitorImpl() {
-        this.monitorObserverList = new ArrayList<>();
-    }
+    private final ChartIdentifier chartIdentifier;
 
     @Override
     public void update(GeneratorAsync generatorAsync) {
         Future<Integer> value = generatorAsync.getValue();
+        try {
+            this.notifyObservers(value.get());
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("E", e);
+        }
     }
 
     @Override
@@ -31,9 +40,7 @@ public class MonitorImpl implements Monitor {
     }
 
     @Override
-    public void notifyObservers() {
-        this.monitorObserverList.forEach(o -> {
-//            o.update();
-        });
+    public void notifyObservers(Integer i) {
+        this.monitorObserverList.forEach(o -> o.update(this.chartIdentifier));
     }
 }
