@@ -59,8 +59,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <PieChart fx:id="monitor1" title="Monitor #1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <BarChart fx:id="monitor2" title="Monitor #2" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <PieChart fx:id="pieChart1" title="Monitor #1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <BarChart fx:id="barChart2" title="Monitor #2" GridPane.columnIndex="1" GridPane.rowIndex="0">
                             <xAxis>
                                 <CategoryAxis side="BOTTOM" />
                             </xAxis>
@@ -68,7 +68,7 @@
                                 <NumberAxis side="LEFT" />
                             </yAxis>
                         </BarChart>
-                        <BarChart fx:id="monitor3" title="Monitor #3" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <BarChart fx:id="barChart3" title="Monitor #3" GridPane.columnIndex="0" GridPane.rowIndex="1">
                             <xAxis>
                                 <CategoryAxis side="BOTTOM" />
                             </xAxis>
@@ -76,7 +76,7 @@
                                 <NumberAxis side="LEFT" />
                             </yAxis>
                         </BarChart>
-                        <PieChart fx:id="monitor4" title="Monitor #4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PieChart fx:id="pieChart4" title="Monitor #4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
             </children>
