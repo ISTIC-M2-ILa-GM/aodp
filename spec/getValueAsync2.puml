@@ -3,8 +3,8 @@ box "Future"
     participant "f : Future" as f
 end box
 box "Servant"
-    participant "d: Diffusion" as d
     participant "g: Generator" as g
+    participant "d: Diffusion" as d
 end box
 box "Method Invocation"
     participant "mi : GetValueCallable" as mi
