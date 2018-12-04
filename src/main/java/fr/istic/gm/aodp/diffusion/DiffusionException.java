@@ -1,4 +1,4 @@
-package fr.istic.gm.aodp.strategy;
+package fr.istic.gm.aodp.diffusion;
 
 public class DiffusionException extends RuntimeException {
 

@@ -1,5 +1,7 @@
 package fr.istic.gm.aodp.activeobject;
 
+import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
+
 import java.util.concurrent.Future;
 
 /**
@@ -13,5 +15,5 @@ public interface ObserverGeneratorAsync {
      * @param generator the generator observed
      * @return the future
      */
-    Future<Integer> update(Generator generator);
+    Future<Integer> update(GeneratorDiffusion generator);
 }

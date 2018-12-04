@@ -1,7 +1,7 @@
 package fr.istic.gm.aodp.activeobject;
 
 import fr.istic.gm.aodp.activeobject.impl.GeneratorImpl;
-import fr.istic.gm.aodp.strategy.Diffusion;
+import fr.istic.gm.aodp.diffusion.Diffusion;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

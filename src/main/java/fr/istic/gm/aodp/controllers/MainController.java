@@ -1,8 +1,8 @@
 package fr.istic.gm.aodp.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
-import fr.istic.gm.aodp.activeobject.Observer;
-import fr.istic.gm.aodp.activeobject.impl.Monitor;
+import fr.istic.gm.aodp.domain.MonitorObserver;
+import fr.istic.gm.aodp.activeobject.impl.MonitorImpl;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ import static javafx.scene.chart.PieChart.Data;
 
 @Getter
 @Setter
-public class MainController implements Observer {
+public class MainController implements MonitorObserver {
     @FXML
     private ToggleGroup broadCastMethod;
 
@@ -35,7 +35,7 @@ public class MainController implements Observer {
     @FXML
     private PieChart pieChart4;
 
-    private List<Monitor> monitors;
+    private List<MonitorImpl> monitors;
 
     public void initialize() {
         this.monitors = new ArrayList<>();
@@ -52,7 +52,7 @@ public class MainController implements Observer {
         this.setMonitor4Value(75);
     }
 
-    public void addMonitor(Monitor monitor) {
+    public void addMonitor(MonitorImpl monitor) {
         this.monitors.add(monitor);
     }
 

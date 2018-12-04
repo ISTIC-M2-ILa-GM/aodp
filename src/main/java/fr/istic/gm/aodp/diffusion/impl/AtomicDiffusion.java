@@ -1,9 +1,9 @@
-package fr.istic.gm.aodp.strategy.impl;
+package fr.istic.gm.aodp.diffusion.impl;
 
 import fr.istic.gm.aodp.activeobject.GeneratorAsync;
-import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
-import fr.istic.gm.aodp.strategy.Diffusion;
-import fr.istic.gm.aodp.strategy.DiffusionException;
+import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
+import fr.istic.gm.aodp.diffusion.Diffusion;
+import fr.istic.gm.aodp.diffusion.DiffusionException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +30,8 @@ public class AtomicDiffusion implements Diffusion {
     private int observerNumber;
 
     @Override
-    public List<Future<Integer>> execute(TrueValueGenerator generator) {
-        this.value = generator.getTrueValue();
+    public List<Future<Integer>> execute(GeneratorDiffusion generator) {
+        this.value = generator.getValue();
         this.generatorAsyncs = new ArrayList<>();
         this.observerNumber = generator.getObservers().size();
 

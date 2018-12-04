@@ -1,8 +1,8 @@
 package fr.istic.gm.aodp;
 
-import fr.istic.gm.aodp.activeobject.impl.Monitor;
+import fr.istic.gm.aodp.activeobject.impl.MonitorImpl;
 import fr.istic.gm.aodp.controllers.MainController;
-import fr.istic.gm.aodp.strategy.impl.AtomicDiffusion;
+import fr.istic.gm.aodp.diffusion.impl.AtomicDiffusion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,10 +18,10 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rootPane.fxml"));
         Parent root = loader.load();
         MainController mainController = loader.getController();
-        mainController.addMonitor(new Monitor());
-        mainController.addMonitor(new Monitor());
-        mainController.addMonitor(new Monitor());
-        mainController.addMonitor(new Monitor());
+        mainController.addMonitor(new MonitorImpl());
+        mainController.addMonitor(new MonitorImpl());
+        mainController.addMonitor(new MonitorImpl());
+        mainController.addMonitor(new MonitorImpl());
 
         primaryStage.setTitle("Active Object");
         primaryStage.setScene(new Scene(root, 600, 400));

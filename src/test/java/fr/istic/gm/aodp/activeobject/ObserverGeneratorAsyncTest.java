@@ -1,13 +1,13 @@
 package fr.istic.gm.aodp.activeobject;
 
 import fr.istic.gm.aodp.activeobject.impl.Canal;
+import fr.istic.gm.aodp.domain.Generator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;

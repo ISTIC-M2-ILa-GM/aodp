@@ -16,15 +16,15 @@ activate g
 activate s
 s -> mi: call()
 activate mi
-mi -> g: getValue(c)
+mi -> d: getValue(c)
 deactivate mi
-g -> d: getValue(c)
-deactivate g
 activate d
-d --> g: v
+d -> g: getValue()
 deactivate d
-activate g
-g --> mi: v
+g --> d: v
+activate d
+d --> mi: v
+deactivate d
 activate mi
 mi --> s: v
 deactivate mi

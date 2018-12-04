@@ -1,11 +1,8 @@
-package fr.istic.gm.aodp.strategy.impl;
+package fr.istic.gm.aodp.diffusion.impl;
 
-import fr.istic.gm.aodp.activeobject.Generator;
 import fr.istic.gm.aodp.activeobject.GeneratorAsync;
-import fr.istic.gm.aodp.activeobject.TrueValueGenerator;
 import fr.istic.gm.aodp.activeobject.impl.Canal;
-import fr.istic.gm.aodp.strategy.DiffusionException;
-import fr.istic.gm.aodp.strategy.impl.AtomicDiffusion;
+import fr.istic.gm.aodp.diffusion.DiffusionException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,7 +23,6 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

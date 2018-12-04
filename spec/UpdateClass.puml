@@ -17,14 +17,14 @@ package Java {
     }
 }
 class c as "Canal" {
-    +update(g: Generator): Future
+    +update(g: GeneratorDiffusion): Future
     +getValue(): Future
 }
 interface ga as "GeneratorAsync" {
     +getValue(): Future
 }
 interface oga as "ObsGeneratorAsync" {
-    +update(g: Generator): Future
+    +update(g: GeneratorDiffusion): Future
 }
 interface g as "Generator" {
     +getValue(): int
@@ -75,17 +75,20 @@ package Java {
     }
 }
 class c as "Canal" {
-    +update(g: Generator): Future
+    +update(g: GeneratorDiffusion): Future
     +getValue(): Future
 }
 interface ga as "GeneratorAsync" {
     +getValue(): Future
 }
 interface oga as "ObsGeneratorAsync" {
-    +update(g: Generator): Future
+    +update(g: GeneratorDiffusion): Future
 }
 interface g as "Generator" {
     +getValue(): int
+}
+interface gd as "GeneratorDiffusion" {
+    +getDiffusion(): Diffusion
 }
 class umi as "GetValueCallable" {
     +call()
@@ -114,4 +117,6 @@ vmi ..|> cb
 c ..|> ga
 c ..|> oga
 m ..|> og
+
+gd --|> g
 @enduml

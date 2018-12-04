@@ -1,10 +1,13 @@
 package fr.istic.gm.aodp.activeobject.impl;
 
-import fr.istic.gm.aodp.activeobject.*;
-import lombok.AllArgsConstructor;
+import fr.istic.gm.aodp.activeobject.GeneratorAsync;
+import fr.istic.gm.aodp.activeobject.GetValueCallable;
+import fr.istic.gm.aodp.activeobject.ObserverGenerator;
+import fr.istic.gm.aodp.activeobject.ObserverGeneratorAsync;
+import fr.istic.gm.aodp.activeobject.UpdateCallable;
+import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import lombok.RequiredArgsConstructor;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -18,10 +21,10 @@ public class Canal implements GeneratorAsync, ObserverGeneratorAsync {
 
     private final Long customRetard;
 
-    private Generator generator;
+    private GeneratorDiffusion generator;
 
     @Override
-    public Future<Integer> update(Generator generator) {
+    public Future<Integer> update(GeneratorDiffusion generator) {
 
         this.generator = generator;
         UpdateCallable mi = new UpdateCallableImpl(this, observerGenerator);

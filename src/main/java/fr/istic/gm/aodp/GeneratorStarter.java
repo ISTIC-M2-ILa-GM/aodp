@@ -1,10 +1,9 @@
 package fr.istic.gm.aodp;
 
-import fr.istic.gm.aodp.activeobject.Generator;
+import fr.istic.gm.aodp.domain.Generator;
 import fr.istic.gm.aodp.activeobject.impl.GeneratorImpl;
-import fr.istic.gm.aodp.strategy.Diffusion;
-import fr.istic.gm.aodp.strategy.DiffusionException;
-import fr.istic.gm.aodp.strategy.impl.AtomicDiffusion;
+import fr.istic.gm.aodp.diffusion.Diffusion;
+import fr.istic.gm.aodp.diffusion.DiffusionException;
 import lombok.AllArgsConstructor;
 
 import java.util.concurrent.CompletableFuture;
