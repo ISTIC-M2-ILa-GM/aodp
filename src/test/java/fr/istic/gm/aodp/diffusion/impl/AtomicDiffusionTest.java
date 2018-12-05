@@ -4,7 +4,6 @@ import fr.istic.gm.aodp.activeobject.GeneratorAsync;
 import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.diffusion.DiffusionException;
 import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
-import fr.istic.gm.aodp.domain.Generator;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -58,6 +57,7 @@ public class AtomicDiffusionTest {
 
         when(mockGenerator.getObservers()).thenReturn(Collections.singletonList(mockCanal));
         when(mockCanal.update(any())).thenReturn(mockFuture);
+        when(mockGenerator.getValue()).thenReturn(10);
 
         List<Future<Integer>> result = atomicDiffusion.execute(mockGenerator);
 
@@ -69,6 +69,7 @@ public class AtomicDiffusionTest {
         assertThat(atomicDiffusion.getGeneratorAsyncs(), notNullValue());
         assertThat(atomicDiffusion.getGeneratorAsyncs(), empty());
         assertThat(atomicDiffusion.getObserverNumber(), equalTo(1));
+        assertThat(atomicDiffusion.getValue(null), equalTo(10));
     }
 
     @Test
