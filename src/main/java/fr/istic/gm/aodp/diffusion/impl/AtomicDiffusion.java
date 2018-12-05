@@ -49,6 +49,9 @@ public class AtomicDiffusion implements Diffusion {
 
     @Override
     public Integer getValue(GeneratorAsync generator) {
+        if (!generatorAsyncs.contains(generator)) {
+            generatorAsyncs.add(generator);
+        }
         return this.value;
     }
 }
