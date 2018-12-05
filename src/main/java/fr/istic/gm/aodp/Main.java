@@ -33,7 +33,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
         CompletableFuture<Void> start = GeneratorStarter.start(AtomicDiffusion.class, 10000);
+        launch(args);
     }
 }

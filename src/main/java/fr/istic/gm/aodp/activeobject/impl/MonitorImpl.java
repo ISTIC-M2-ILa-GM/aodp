@@ -5,14 +5,12 @@ import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
 @RequiredArgsConstructor
-@Slf4j
 public class MonitorImpl implements Monitor {
     private List<MonitorObserver> monitorObserverList = new ArrayList<>();
 
@@ -25,7 +23,6 @@ public class MonitorImpl implements Monitor {
             this.notifyObservers(value.get());
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("E", e);
         }
     }
 
@@ -41,6 +38,6 @@ public class MonitorImpl implements Monitor {
 
     @Override
     public void notifyObservers(Integer i) {
-        this.monitorObserverList.forEach(o -> o.update(this.chartIdentifier));
+        this.monitorObserverList.forEach(o -> o.update(this.chartIdentifier, i));
     }
 }
