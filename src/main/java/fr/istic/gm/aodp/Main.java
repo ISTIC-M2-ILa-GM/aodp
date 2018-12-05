@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import java.util.concurrent.CompletableFuture;
 
+import static fr.istic.gm.aodp.enums.ChartIdentifier.*;
+
 public class Main extends Application {
 
     @Override
@@ -18,10 +20,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rootPane.fxml"));
         Parent root = loader.load();
         MainController mainController = loader.getController();
-        mainController.addMonitor(new MonitorImpl());
-        mainController.addMonitor(new MonitorImpl());
-        mainController.addMonitor(new MonitorImpl());
-        mainController.addMonitor(new MonitorImpl());
+        mainController.addMonitor(new MonitorImpl(MONITOR_1));
+        mainController.addMonitor(new MonitorImpl(MONITOR_2));
+        mainController.addMonitor(new MonitorImpl(MONITOR_3));
+        mainController.addMonitor(new MonitorImpl(MONITOR_4));
+
 
         primaryStage.setTitle("Active Object");
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -30,7 +33,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
         CompletableFuture<Void> start = GeneratorStarter.start(AtomicDiffusion.class, 10000);
+        launch(args);
     }
 }

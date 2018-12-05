@@ -48,7 +48,6 @@ public class MainController implements MonitorObserver {
         this.pieChart1.setStartAngle(0);
         this.pieChart4.setStartAngle(0);
         this.setMonitor1Value(45);
-        this.setMonitor2Value(22);
         this.setMonitor4Value(75);
     }
 
@@ -62,6 +61,10 @@ public class MainController implements MonitorObserver {
     }
 
     public void setMonitor2Value(Integer value) {
+        // TODO: implement method
+    }
+
+    public void setMonitor3Value(Integer value) {
         // TODO: implement method
     }
 
@@ -79,16 +82,19 @@ public class MainController implements MonitorObserver {
     }
 
     @Override
-    public void update(ChartIdentifier c) {
+    public void update(ChartIdentifier c, Integer i) {
         switch (c) {
             case MONITOR_1:
-                // TODO: update monitor 1
+                this.setMonitor1Value(i);
                 break;
             case MONITOR_2:
+                // TODO: update monitor 2
                 break;
             case MONITOR_3:
+                // TODO: update monitor 2
                 break;
             case MONITOR_4:
+                this.setMonitor4Value(i);
                 break;
         }
     }
