@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rootPane.fxml"));
         Parent root = loader.load();
         MainController mainController = loader.getController();

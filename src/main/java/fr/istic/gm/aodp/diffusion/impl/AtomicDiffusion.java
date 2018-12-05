@@ -1,9 +1,9 @@
 package fr.istic.gm.aodp.diffusion.impl;
 
 import fr.istic.gm.aodp.activeobject.GeneratorAsync;
-import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import fr.istic.gm.aodp.diffusion.Diffusion;
 import fr.istic.gm.aodp.diffusion.DiffusionException;
+import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,9 +49,6 @@ public class AtomicDiffusion implements Diffusion {
 
     @Override
     public Integer getValue(GeneratorAsync generator) {
-        if (!generatorAsyncs.contains(generator)) {
-            generatorAsyncs.add(generator);
-        }
         return this.value;
     }
 }
