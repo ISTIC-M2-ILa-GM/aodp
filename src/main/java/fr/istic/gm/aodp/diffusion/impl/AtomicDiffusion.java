@@ -23,6 +23,7 @@ public class AtomicDiffusion implements Diffusion {
     @Setter(AccessLevel.PACKAGE)
     private List<GeneratorAsync> generatorAsyncs = new ArrayList<>();
 
+    @Setter(AccessLevel.PACKAGE)
     private Integer value;
 
     @Getter(AccessLevel.PACKAGE)

@@ -3,6 +3,8 @@ package fr.istic.gm.aodp.activeobject.impl;
 import fr.istic.gm.aodp.activeobject.ObserverGeneratorAsync;
 import fr.istic.gm.aodp.diffusion.Diffusion;
 import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
+import fr.istic.gm.aodp.memento.Memento;
+import fr.istic.gm.aodp.memento.impl.IntMemento;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +39,16 @@ public class GeneratorImpl implements GeneratorDiffusion {
     @Override
     public void detach(ObserverGeneratorAsync observerGenerator) {
         observers.remove(observerGenerator);
+    }
+
+    @Override
+    public Memento<Integer> saveToMemento() {
+        return new IntMemento(value);
+    }
+
+    @Override
+    public void restoreFromMemento(Memento<Integer> memento) {
+        setValue(memento.getValue());
     }
 
     /**

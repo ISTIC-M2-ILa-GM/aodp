@@ -104,12 +104,15 @@ public class AtomicDiffusionTest {
     @Test
     public void shouldAddGeneratorAsyncWhenGetValue() {
 
+        atomicDiffusion.setValue(10);
+
         atomicDiffusion.setGeneratorAsyncs(new ArrayList<>());
 
-        atomicDiffusion.getValue(mockGeneratorAsync);
+        Integer value = atomicDiffusion.getValue(mockGeneratorAsync);
 
         assertThat(atomicDiffusion.getGeneratorAsyncs(), hasSize(1));
         assertThat(atomicDiffusion.getGeneratorAsyncs().get(0), equalTo(mockGeneratorAsync));
+        assertThat(value, equalTo(10));
     }
 
     @Test
