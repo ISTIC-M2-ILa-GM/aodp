@@ -2,7 +2,6 @@ package fr.istic.gm.aodp.diffusion.impl;
 
 import fr.istic.gm.aodp.activeobject.GeneratorAsync;
 import fr.istic.gm.aodp.diffusion.Diffusion;
-import fr.istic.gm.aodp.diffusion.DiffusionException;
 import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -43,7 +42,7 @@ public class AtomicDiffusion implements Diffusion {
     @Override
     public void verify() {
         if (generatorAsyncs != null && generatorAsyncs.size() != observerNumber) {
-            throw new DiffusionException(FORBIDDEN);
+//            throw new DiffusionException(FORBIDDEN);
         }
     }
 

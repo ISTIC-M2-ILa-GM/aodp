@@ -28,13 +28,13 @@ public class Canal implements GeneratorAsync, ObserverGeneratorAsync {
 
         this.generator = generator;
         UpdateCallable mi = new UpdateCallableImpl(this, observerGenerator);
-        return scheduledExecutorService.schedule(mi, customRetard, TimeUnit.SECONDS);
+        return scheduledExecutorService.schedule(mi, customRetard, TimeUnit.MILLISECONDS);
     }
 
 
     @Override
     public Future<Integer> getValue() {
         GetValueCallable mi = new GetValueCallableImpl(this, generator);
-        return scheduledExecutorService.schedule(mi, customRetard, TimeUnit.SECONDS);
+        return scheduledExecutorService.schedule(mi, customRetard, TimeUnit.MILLISECONDS);
     }
 }

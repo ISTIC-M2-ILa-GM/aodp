@@ -1,8 +1,8 @@
 package fr.istic.gm.aodp.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
-import fr.istic.gm.aodp.activeobject.impl.MonitorImpl;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,7 +35,7 @@ public class MainController implements MonitorObserver {
     @FXML
     private PieChart pieChart4;
 
-    private List<MonitorImpl> monitors;
+    private List<Monitor> monitors;
 
     public void initialize() {
         this.monitors = new ArrayList<>();
@@ -47,11 +47,11 @@ public class MainController implements MonitorObserver {
 
         this.pieChart1.setStartAngle(0);
         this.pieChart4.setStartAngle(0);
-        this.setMonitor1Value(45);
-        this.setMonitor4Value(75);
+        this.setMonitor1Value(0);
+        this.setMonitor4Value(0);
     }
 
-    public void addMonitor(MonitorImpl monitor) {
+    public void addMonitor(Monitor monitor) {
         this.monitors.add(monitor);
     }
 

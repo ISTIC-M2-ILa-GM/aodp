@@ -13,18 +13,24 @@ public class GeneratorStarter implements Runnable {
 
     public static final String DIFFUSION_ERROR = "Diffusion can't be initialized";
 
-    private Class<? extends Diffusion> diffusionClass;
+    private Generator generator;
 
     private int generateEachMs;
 
-    public static CompletableFuture<Void> start(Class<? extends Diffusion> diffusionClass, int generateEachMs) {
-        return CompletableFuture.runAsync(new GeneratorStarter(diffusionClass, generateEachMs));
+    public static Generator start(Class<? extends Diffusion> diffusionClass, int generateEachMs) {
+
+        try {
+            Generator generator = new GeneratorImpl(diffusionClass.newInstance());
+            CompletableFuture.runAsync(new GeneratorStarter(generator, generateEachMs));
+            return generator;
+        } catch (Exception e) {
+            throw new DiffusionException(DIFFUSION_ERROR);
+        }
     }
 
     @Override
     public void run() {
         try {
-            Generator generator = new GeneratorImpl(diffusionClass.newInstance());
             while (true) {
                 Thread.sleep(generateEachMs);
                 generator.generate();
