@@ -5,9 +5,13 @@ import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleGroup;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,35 +24,37 @@ import static javafx.scene.chart.PieChart.Data;
 @Getter
 @Setter
 public class MainController implements MonitorObserver {
-    @FXML
-    private ToggleGroup broadCastMethod;
+    @FXML public Button generateButton;
 
-    @FXML
-    private PieChart pieChart1;
+    @FXML private ToggleGroup broadCastMethod;
 
-    @FXML
-    private BarChart<Integer, Integer> barChart2;
+    @FXML private PieChart pieChart1;
 
-    @FXML
-    private BarChart<Integer, Integer> barChart3;
+    @FXML private BarChart<Integer, Integer> barChart2;
 
-    @FXML
-    private PieChart pieChart4;
+    @FXML private BarChart<Integer, Integer> barChart3;
+
+    @FXML private PieChart pieChart4;
 
     private List<Monitor> monitors;
 
     public void initialize() {
         this.monitors = new ArrayList<>();
 
+        this.pieChart1.setStartAngle(0);
+        this.pieChart4.setStartAngle(0);
+        this.setMonitor1Value(0);
+        this.setMonitor4Value(0);
+
         // listener to change the broadcast method
         this.broadCastMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             // TODO: change broadcast method
         });
 
-        this.pieChart1.setStartAngle(0);
-        this.pieChart4.setStartAngle(0);
-        this.setMonitor1Value(0);
-        this.setMonitor4Value(0);
+        // listener to start new generation
+        this.generateButton.setOnAction(event -> {
+            // TODO: refactor Main.java and move Generator here
+        });
     }
 
     public void addMonitor(Monitor monitor) {
