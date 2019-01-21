@@ -36,7 +36,7 @@ public class ObserverGeneratorAsyncTest {
     private ScheduledExecutorService mockScheduledExecutorService;
 
     @Mock
-    private ScheduledFuture<Integer> mockFuture;
+    private ScheduledFuture mockFuture;
 
     @Before
     public void setUp() {
@@ -46,11 +46,11 @@ public class ObserverGeneratorAsyncTest {
     @Test
     public void shouldUpdateTheCanal() {
 
-        when(mockScheduledExecutorService.schedule(any(UpdateCallable.class), anyLong(), any(TimeUnit.class))).thenReturn(mockFuture);
+        when(mockScheduledExecutorService.schedule(any(UpdateRunnable.class), anyLong(), any(TimeUnit.class))).thenReturn(mockFuture);
 
-        Future<Integer> result = observerGeneratorAsync.update(mockGenerator);
+        Future result = observerGeneratorAsync.update(mockGenerator);
 
-        verify(mockScheduledExecutorService).schedule(any(UpdateCallable.class), eq(10L), eq(TimeUnit.MILLISECONDS));
+        verify(mockScheduledExecutorService).schedule(any(UpdateRunnable.class), eq(10L), eq(TimeUnit.MILLISECONDS));
 
         assertThat(result, equalTo(mockFuture));
     }

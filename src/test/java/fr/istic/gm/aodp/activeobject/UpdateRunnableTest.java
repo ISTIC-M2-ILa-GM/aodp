@@ -1,7 +1,7 @@
 package fr.istic.gm.aodp.activeobject;
 
 import fr.istic.gm.aodp.activeobject.impl.Canal;
-import fr.istic.gm.aodp.activeobject.impl.UpdateCallableImpl;
+import fr.istic.gm.aodp.activeobject.impl.UpdateRunnableImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,9 +11,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UpdateCallableTest {
+public class UpdateRunnableTest {
 
-    private UpdateCallable updateCallable;
+    private UpdateRunnable updateRunnable;
 
     @Mock
     private Canal mockCanal;
@@ -23,13 +23,13 @@ public class UpdateCallableTest {
 
     @Before
     public void setUp() {
-        updateCallable = new UpdateCallableImpl(mockCanal, mockObserverGenerator);
+        updateRunnable = new UpdateRunnableImpl(mockCanal, mockObserverGenerator);
     }
 
     @Test
     public void shouldUpdateAMonitor() throws Exception {
 
-        updateCallable.call();
+        updateRunnable.run();
 
         verify(mockObserverGenerator).update(mockCanal);
     }

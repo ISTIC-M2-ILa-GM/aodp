@@ -4,7 +4,7 @@ import fr.istic.gm.aodp.activeobject.GeneratorAsync;
 import fr.istic.gm.aodp.activeobject.GetValueCallable;
 import fr.istic.gm.aodp.activeobject.ObserverGenerator;
 import fr.istic.gm.aodp.activeobject.ObserverGeneratorAsync;
-import fr.istic.gm.aodp.activeobject.UpdateCallable;
+import fr.istic.gm.aodp.activeobject.UpdateRunnable;
 import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import lombok.RequiredArgsConstructor;
 
@@ -24,10 +24,10 @@ public class Canal implements GeneratorAsync, ObserverGeneratorAsync {
     private GeneratorDiffusion generator;
 
     @Override
-    public Future<Integer> update(GeneratorDiffusion generator) {
+    public Future update(GeneratorDiffusion generator) {
 
         this.generator = generator;
-        UpdateCallable mi = new UpdateCallableImpl(this, observerGenerator);
+        UpdateRunnable mi = new UpdateRunnableImpl(this, observerGenerator);
         return scheduledExecutorService.schedule(mi, customRetard, TimeUnit.MILLISECONDS);
     }
 

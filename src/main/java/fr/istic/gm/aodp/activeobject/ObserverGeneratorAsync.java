@@ -15,5 +15,5 @@ public interface ObserverGeneratorAsync {
      * @param generator the generator observed
      * @return the future
      */
-    Future<Integer> update(GeneratorDiffusion generator);
+    Future update(GeneratorDiffusion generator);
 }

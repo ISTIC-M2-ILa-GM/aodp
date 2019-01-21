@@ -1,19 +1,18 @@
 package fr.istic.gm.aodp.activeobject.impl;
 
 import fr.istic.gm.aodp.activeobject.ObserverGenerator;
-import fr.istic.gm.aodp.activeobject.UpdateCallable;
+import fr.istic.gm.aodp.activeobject.UpdateRunnable;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class UpdateCallableImpl implements UpdateCallable {
+public class UpdateRunnableImpl implements UpdateRunnable {
 
     private Canal canal;
 
     private ObserverGenerator observerGenerator;
 
     @Override
-    public Integer call() {
+    public void run() {
         observerGenerator.update(canal);
-        return null;
     }
 }

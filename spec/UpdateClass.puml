@@ -12,7 +12,7 @@ package Java {
     interface s as "ScheduledExecutorService" {
         +schedule(c: callable, timeout: Duration)
     }
-    interface cb as "Callable"<T> {
+    interface cb as "Runnable" {
         +call()
     }
 }
@@ -29,11 +29,11 @@ interface oga as "ObsGeneratorAsync" {
 interface g as "Generator" {
     +getValue(): int
 }
-class umi as "GetValueCallable" {
-    +call()
-}
-class vmi as "UpdateCallable" {
-    +call()
+'class umi as "GetValueCallable" {
+'    +call(): int
+'}
+class vmi as "UpdateRunnable" {
+    +run()
 }
 class m as "Monitor" {
     +update(g: Generator)
@@ -51,7 +51,7 @@ uao ..> og: Servant
 uao ..> vmi: Concrete MI
 uao ..> f: Future
 
-umi ..|> cb
+'umi ..|> cb
 vmi ..|> cb
 c ..|> ga
 c ..|> oga
@@ -91,11 +91,11 @@ interface gd as "GeneratorDiffusion" {
     +getDiffusion(): Diffusion
 }
 class umi as "GetValueCallable" {
-    +call()
+    +call(): int
 }
-class vmi as "UpdateCallable" {
-    +call()
-}
+'class vmi as "UpdateRunnable" {
+'    +run()
+'}
 class m as "Monitor" {
     +update(g: Generator)
 }
@@ -113,7 +113,7 @@ vao ..> ga: Service
 vao ..> umi: Concrete MI
 
 umi ..|> cb
-vmi ..|> cb
+'vmi ..|> cb
 c ..|> ga
 c ..|> oga
 m ..|> og
