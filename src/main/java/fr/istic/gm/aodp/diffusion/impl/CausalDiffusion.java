@@ -21,11 +21,6 @@ public class CausalDiffusion implements Diffusion {
     }
 
     @Override
-    public void verify() {
-        // Causal nothing to do ...
-    }
-
-    @Override
     public Integer getValue(GeneratorAsync generator) {
         return this.value;
     }

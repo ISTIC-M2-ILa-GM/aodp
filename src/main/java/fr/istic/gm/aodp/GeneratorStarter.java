@@ -11,21 +11,17 @@ import java.util.concurrent.CompletableFuture;
 @AllArgsConstructor
 public class GeneratorStarter implements Runnable {
 
-    public static final String DIFFUSION_ERROR = "Diffusion can't be initialized";
+    public static final String DIFFUSION_ERROR = "Diffusion error";
 
     private Generator generator;
 
     private int generateEachMs;
 
-    public static Generator start(Class<? extends Diffusion> diffusionClass, int generateEachMs) {
+    public static Generator start(Diffusion diffusion, int generateEachMs) {
 
-        try {
-            Generator generator = new GeneratorImpl(diffusionClass.newInstance());
-            CompletableFuture.runAsync(new GeneratorStarter(generator, generateEachMs));
-            return generator;
-        } catch (Exception e) {
-            throw new DiffusionException(DIFFUSION_ERROR);
-        }
+        Generator generator = new GeneratorImpl(diffusion);
+        CompletableFuture.runAsync(new GeneratorStarter(generator, generateEachMs));
+        return generator;
     }
 
     @Override

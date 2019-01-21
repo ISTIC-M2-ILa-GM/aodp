@@ -3,7 +3,7 @@ package fr.istic.gm.aodp;
 import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.activeobject.impl.MonitorImpl;
 import fr.istic.gm.aodp.controllers.MainController;
-import fr.istic.gm.aodp.diffusion.impl.AtomicDiffusion;
+import fr.istic.gm.aodp.diffusion.impl.CausalDiffusion;
 import fr.istic.gm.aodp.domain.Generator;
 import fr.istic.gm.aodp.domain.Monitor;
 import javafx.application.Application;
@@ -21,7 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Generator generator = GeneratorStarter.start(AtomicDiffusion.class, 4000);
+        Generator generator = GeneratorStarter.start(new CausalDiffusion(), 4000);
         Monitor monitor1 = new MonitorImpl(MONITOR_1);
         Canal canal1 = new Canal(monitor1, Executors.newScheduledThreadPool(4), 500L);
         generator.attach(canal1);
