@@ -4,6 +4,7 @@ import fr.istic.gm.aodp.activeobject.GeneratorAsync;
 import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
+import javafx.application.Platform;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class MonitorImpl implements Monitor {
 
     @Override
     public void notifyObservers(Integer i) {
-        this.monitorObserverList.forEach(o -> o.update(this.chartIdentifier, i));
+        Platform.runLater(() -> {
+            this.monitorObserverList.forEach(o -> o.update(this.chartIdentifier, i));
+        });
     }
 }

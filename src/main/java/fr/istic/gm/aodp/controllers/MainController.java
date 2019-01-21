@@ -7,10 +7,12 @@ import fr.istic.gm.aodp.activeobject.impl.MonitorImpl;
 import fr.istic.gm.aodp.diffusion.Diffusion;
 import fr.istic.gm.aodp.diffusion.impl.AtomicDiffusion;
 import fr.istic.gm.aodp.diffusion.impl.CausalDiffusion;
+import fr.istic.gm.aodp.diffusion.impl.SequentialDiffusion;
 import fr.istic.gm.aodp.domain.Generator;
 import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
+import fr.istic.gm.aodp.memento.impl.MementoFactoryImpl;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -24,8 +26,10 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import static fr.istic.gm.aodp.enums.ChartIdentifier.MONITOR_1;
+import static fr.istic.gm.aodp.enums.ChartIdentifier.MONITOR_4;
 import static javafx.scene.chart.PieChart.Data;
 
 @Getter
@@ -56,14 +60,28 @@ public class MainController implements MonitorObserver {
 
     private Canal canal1;
 
-    private Monitor monitor;
+    private Canal canal4;
+
+    private Monitor monitor1;
+
+    private Monitor monitor4;
+
+    private ScheduledExecutorService scheduledExecutorService;
 
     public void initialize() {
         this.myDiffusion = new CausalDiffusion();
         this.generator = new GeneratorImpl(this.myDiffusion);
-        this.monitor = new MonitorImpl(MONITOR_1);
-        this.canal1 = new Canal(this.monitor, Executors.newScheduledThreadPool(4), 500L);
+        this.monitor1 = new MonitorImpl(MONITOR_1);
+        this.monitor4 = new MonitorImpl(MONITOR_4);
+
+        this.scheduledExecutorService = Executors.newScheduledThreadPool(4);
+
+        this.canal1 = new Canal(this.monitor1, this.scheduledExecutorService, 500L);
+        this.canal4 = new Canal(this.monitor4, this.scheduledExecutorService, 2000L);
         this.generator.attach(this.canal1);
+        this.generator.attach(this.canal4);
+        this.monitor1.attach(this);
+        this.monitor4.attach(this);
 
 
         this.pieChart1.setStartAngle(0);
@@ -78,18 +96,17 @@ public class MainController implements MonitorObserver {
             } else if (newValue == this.causalBroadcast) {
                 this.myDiffusion = new CausalDiffusion();
             } else if (newValue == this.sequentialBroadcast) {
-                // TODO: add sequential diffusion
+                this.myDiffusion = new SequentialDiffusion(new MementoFactoryImpl());
             }
 
             // Create new generator
             this.generator = new GeneratorImpl(this.myDiffusion);
-
+            this.generator.attach(this.canal1);
+            this.generator.attach(this.canal4);
         });
     }
 
     public void generate() {
-        this.generator.generate();
-
         this.generator.generate();
     }
 
@@ -114,7 +131,7 @@ public class MainController implements MonitorObserver {
     private ObservableList<Data> createPieChartData(Integer value) {
         List<Data> myList = new ArrayList<>();
         myList.add(new Data("", 100 - value));
-        myList.add(new Data("value", value));
+        myList.add(new Data(value.toString(), value));
 
         return new ObservableListWrapper<>(myList);
     }
