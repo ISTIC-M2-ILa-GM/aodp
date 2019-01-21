@@ -1,28 +1,31 @@
 package fr.istic.gm.aodp.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.activeobject.impl.GeneratorImpl;
+import fr.istic.gm.aodp.activeobject.impl.MonitorImpl;
 import fr.istic.gm.aodp.diffusion.Diffusion;
+import fr.istic.gm.aodp.diffusion.impl.AtomicDiffusion;
 import fr.istic.gm.aodp.diffusion.impl.CausalDiffusion;
 import fr.istic.gm.aodp.domain.Generator;
 import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
+import static fr.istic.gm.aodp.enums.ChartIdentifier.MONITOR_1;
 import static javafx.scene.chart.PieChart.Data;
 
 @Getter
@@ -30,7 +33,14 @@ import static javafx.scene.chart.PieChart.Data;
 public class MainController implements MonitorObserver {
     @FXML public Button generateButton;
 
+
     @FXML private ToggleGroup broadCastMethod;
+
+    @FXML private RadioButton atomicBroadcast;
+
+    @FXML private RadioButton sequentialBroadcast;
+
+    @FXML private RadioButton causalBroadcast;
 
     @FXML private PieChart pieChart1;
 
@@ -44,11 +54,17 @@ public class MainController implements MonitorObserver {
 
     private Diffusion myDiffusion;
 
-    private List<Monitor> monitors;
+    private Canal canal1;
+
+    private Monitor monitor;
 
     public void initialize() {
-        this.monitors = new ArrayList<>();
-        this.generator = new GeneratorImpl(new CausalDiffusion());
+        this.myDiffusion = new CausalDiffusion();
+        this.generator = new GeneratorImpl(this.myDiffusion);
+        this.monitor = new MonitorImpl(MONITOR_1);
+        this.canal1 = new Canal(this.monitor, Executors.newScheduledThreadPool(4), 500L);
+        this.generator.attach(this.canal1);
+
 
         this.pieChart1.setStartAngle(0);
         this.pieChart4.setStartAngle(0);
@@ -57,16 +73,24 @@ public class MainController implements MonitorObserver {
 
         // listener to change the broadcast method
         this.broadCastMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            // TODO: change broadcast method
+            if(newValue == this.atomicBroadcast) {
+                this.myDiffusion = new AtomicDiffusion();
+            } else if (newValue == this.causalBroadcast) {
+                this.myDiffusion = new CausalDiffusion();
+            } else if (newValue == this.sequentialBroadcast) {
+                // TODO: add sequential diffusion
+            }
+
+            // Create new generator
+            this.generator = new GeneratorImpl(this.myDiffusion);
+
         });
     }
 
     public void generate() {
         this.generator.generate();
-    }
 
-    public void addMonitor(Monitor monitor) {
-        this.monitors.add(monitor);
+        this.generator.generate();
     }
 
     public void setMonitor1Value(Integer value) {
