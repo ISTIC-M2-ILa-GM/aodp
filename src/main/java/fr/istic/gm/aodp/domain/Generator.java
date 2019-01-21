@@ -5,7 +5,7 @@ import fr.istic.gm.aodp.activeobject.ObserverGeneratorAsync;
 import java.util.List;
 
 /**
- * The generator
+ * The generator (
  */
 public interface Generator {
 
