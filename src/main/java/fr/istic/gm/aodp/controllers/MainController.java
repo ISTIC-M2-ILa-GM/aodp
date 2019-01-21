@@ -1,6 +1,10 @@
 package fr.istic.gm.aodp.controllers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import fr.istic.gm.aodp.activeobject.impl.GeneratorImpl;
+import fr.istic.gm.aodp.diffusion.Diffusion;
+import fr.istic.gm.aodp.diffusion.impl.CausalDiffusion;
+import fr.istic.gm.aodp.domain.Generator;
 import fr.istic.gm.aodp.domain.Monitor;
 import fr.istic.gm.aodp.domain.MonitorObserver;
 import fr.istic.gm.aodp.enums.ChartIdentifier;
@@ -36,10 +40,15 @@ public class MainController implements MonitorObserver {
 
     @FXML private PieChart pieChart4;
 
+    private Generator generator;
+
+    private Diffusion myDiffusion;
+
     private List<Monitor> monitors;
 
     public void initialize() {
         this.monitors = new ArrayList<>();
+        this.generator = new GeneratorImpl(new CausalDiffusion());
 
         this.pieChart1.setStartAngle(0);
         this.pieChart4.setStartAngle(0);
@@ -50,11 +59,10 @@ public class MainController implements MonitorObserver {
         this.broadCastMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             // TODO: change broadcast method
         });
+    }
 
-        // listener to start new generation
-        this.generateButton.setOnAction(event -> {
-            // TODO: refactor Main.java and move Generator here
-        });
+    public void generate() {
+        this.generator.generate();
     }
 
     public void addMonitor(Monitor monitor) {

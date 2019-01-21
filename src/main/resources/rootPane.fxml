@@ -26,7 +26,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <RadioButton mnemonicParsing="false" selected="true" text="Atomic">
+                        <RadioButton mnemonicParsing="false" text="Atomic">
                             <HBox.margin>
                                 <Insets left="8.0" right="8.0" />
                             </HBox.margin>
@@ -34,7 +34,7 @@
                                 <ToggleGroup fx:id="broadCastMethod" />
                             </toggleGroup>
                         </RadioButton>
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Causal" toggleGroup="$broadCastMethod">
+                        <RadioButton layoutX="10.0" layoutY="10.0" selected="true" mnemonicParsing="false" text="Causal" toggleGroup="$broadCastMethod">
                             <HBox.margin>
                                 <Insets left="8.0" right="8.0" />
                             </HBox.margin>
@@ -44,7 +44,7 @@
                                 <Insets left="8.0" right="8.0" />
                             </HBox.margin>
                         </RadioButton>
-                  <Button fx:id="generateButton" mnemonicParsing="false" text="Generate" />
+                  <Button fx:id="generateButton" mnemonicParsing="false" text="Generate" onMouseClicked="#generate" />
                     </children>
                 </HBox>
             </children>
