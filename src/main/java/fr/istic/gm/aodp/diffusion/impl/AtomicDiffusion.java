@@ -32,20 +32,17 @@ public class AtomicDiffusion implements Diffusion {
 
     @Override
     public List<Future<Integer>> execute(GeneratorDiffusion generator) {
-        this.value = generator.getValue();
-        this.generatorAsyncs = new ArrayList<>();
-        this.observerNumber = generator.getObservers().size();
+        if (generatorAsyncs != null && generatorAsyncs.size() != observerNumber) {
+            throw new DiffusionException(FORBIDDEN);
+        } else {
+            this.value = generator.getValue();
+            this.generatorAsyncs = new ArrayList<>();
+            this.observerNumber = generator.getObservers().size();
+        }
 
         List<Future<Integer>> futures = new ArrayList<>();
         generator.getObservers().forEach(o -> futures.add(o.update(generator)));
         return futures;
-    }
-
-    @Override
-    public void verify() {
-        if (generatorAsyncs != null && generatorAsyncs.size() != observerNumber) {
-            throw new DiffusionException(FORBIDDEN);
-        }
     }
 
     @Override

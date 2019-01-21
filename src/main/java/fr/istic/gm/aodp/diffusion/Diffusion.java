@@ -19,11 +19,6 @@ public interface Diffusion {
     List<Future<Integer>> execute(GeneratorDiffusion generator);
 
     /**
-     * Verify the diffusion
-     */
-    void verify();
-
-    /**
      * Retrieve the generator value
      *
      * @param generator the generator

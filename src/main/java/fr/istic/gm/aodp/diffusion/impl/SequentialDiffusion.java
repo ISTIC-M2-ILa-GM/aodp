@@ -19,8 +19,6 @@ import java.util.concurrent.Future;
 @RequiredArgsConstructor
 public class SequentialDiffusion extends CaretakerImpl<Integer> implements Diffusion {
 
-    // Limit number of value ... recheck how work sequential ..
-
     @Getter(AccessLevel.PACKAGE)
     private Map<GeneratorAsync, Integer> generatorAsyncValuePosition = new HashMap<>();
 
@@ -32,11 +30,6 @@ public class SequentialDiffusion extends CaretakerImpl<Integer> implements Diffu
         List<Future<Integer>> futures = new ArrayList<>();
         generator.getObservers().forEach(o -> futures.add(o.update(generator)));
         return futures;
-    }
-
-    @Override
-    public void verify() {
-
     }
 
     @Override

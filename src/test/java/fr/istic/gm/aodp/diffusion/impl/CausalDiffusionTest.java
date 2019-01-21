@@ -61,9 +61,4 @@ public class CausalDiffusionTest {
 
         assertThat(causalDiffusion.getValue(null), equalTo(10));
     }
-
-    @Test
-    public void shouldDoNothingWhenVerify() {
-        causalDiffusion.verify();
-    }
 }

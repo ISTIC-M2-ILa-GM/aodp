@@ -5,11 +5,14 @@ import fr.istic.gm.aodp.diffusion.Diffusion;
 import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
 import fr.istic.gm.aodp.memento.Memento;
 import fr.istic.gm.aodp.memento.impl.IntMemento;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The generator implementation
@@ -26,9 +29,12 @@ public class GeneratorImpl implements GeneratorDiffusion {
     @Getter
     private List<ObserverGeneratorAsync> observers = new ArrayList<>();
 
+    @Setter(AccessLevel.PACKAGE)
+    private Random random = new Random();
+
     @Override
     public void generate() {
-        setValue((int) (Math.random() * 100));
+        setValue(random.nextInt(100));
     }
 
     @Override
@@ -57,7 +63,6 @@ public class GeneratorImpl implements GeneratorDiffusion {
      * @param value the value
      */
     private void setValue(Integer value) {
-        diffusion.verify();
         this.value = value;
         diffusion.execute(this);
     }

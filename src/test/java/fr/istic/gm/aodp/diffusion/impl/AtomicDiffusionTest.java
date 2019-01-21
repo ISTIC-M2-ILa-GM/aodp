@@ -81,7 +81,7 @@ public class AtomicDiffusionTest {
         thrown.expect(DiffusionException.class);
         thrown.expectMessage(AtomicDiffusion.FORBIDDEN);
 
-        atomicDiffusion.verify();
+        atomicDiffusion.execute(mockGenerator);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class AtomicDiffusionTest {
 
         atomicDiffusion.setGeneratorAsyncs(null);
 
-        atomicDiffusion.verify();
+        atomicDiffusion.execute(mockGenerator);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class AtomicDiffusionTest {
         atomicDiffusion.setGeneratorAsyncs(Arrays.asList(mockGeneratorAsync, mockGeneratorAsync, mockGeneratorAsync));
         atomicDiffusion.setObserverNumber(3);
 
-        atomicDiffusion.verify();
+        atomicDiffusion.execute(mockGenerator);
     }
 
     @Test

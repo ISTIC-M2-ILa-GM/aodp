@@ -2,7 +2,6 @@ package fr.istic.gm.aodp.activeobject;
 
 import fr.istic.gm.aodp.activeobject.impl.Canal;
 import fr.istic.gm.aodp.diffusion.GeneratorDiffusion;
-import fr.istic.gm.aodp.domain.Generator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +50,7 @@ public class ObserverGeneratorAsyncTest {
 
         Future<Integer> result = observerGeneratorAsync.update(mockGenerator);
 
-        verify(mockScheduledExecutorService).schedule(any(UpdateCallable.class), eq(10L), eq(TimeUnit.SECONDS));
+        verify(mockScheduledExecutorService).schedule(any(UpdateCallable.class), eq(10L), eq(TimeUnit.MILLISECONDS));
 
         assertThat(result, equalTo(mockFuture));
     }

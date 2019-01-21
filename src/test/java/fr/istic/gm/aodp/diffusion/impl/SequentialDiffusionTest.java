@@ -72,13 +72,8 @@ public class SequentialDiffusionTest {
     }
 
     @Test
-    public void shouldDoNothingWhenVerify() {
-        sequentialDiffusion.verify();
-    }
-
-    @Test
     public void shouldAddGeneratorAsyncWhenGetValue() {
-        
+
         when(mockMementoFactory.create(any())).thenReturn(new IntMemento(10));
         sequentialDiffusion.execute(mockGenerator);
 
