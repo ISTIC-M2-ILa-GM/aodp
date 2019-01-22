@@ -33,24 +33,27 @@ public class ObserverGeneratorAsyncTest {
     private GeneratorDiffusion mockGenerator;
 
     @Mock
-    private ScheduledExecutorService mockScheduledExecutorService;
+    private ScheduledExecutorService mockUpdateScheduledExecutorService;
+
+    @Mock
+    private ScheduledExecutorService mockGetValueScheduledExecutorService;
 
     @Mock
     private ScheduledFuture mockFuture;
 
     @Before
     public void setUp() {
-        observerGeneratorAsync = new Canal(mockObserverGenerator, mockScheduledExecutorService, 10L);
+        observerGeneratorAsync = new Canal(mockObserverGenerator, mockUpdateScheduledExecutorService, mockGetValueScheduledExecutorService, 10L);
     }
 
     @Test
     public void shouldUpdateTheCanal() {
 
-        when(mockScheduledExecutorService.schedule(any(UpdateRunnable.class), anyLong(), any(TimeUnit.class))).thenReturn(mockFuture);
+        when(mockUpdateScheduledExecutorService.schedule(any(UpdateRunnable.class), anyLong(), any(TimeUnit.class))).thenReturn(mockFuture);
 
         Future result = observerGeneratorAsync.update(mockGenerator);
 
-        verify(mockScheduledExecutorService).schedule(any(UpdateRunnable.class), eq(10L), eq(TimeUnit.MILLISECONDS));
+        verify(mockUpdateScheduledExecutorService).schedule(any(UpdateRunnable.class), eq(10L), eq(TimeUnit.MILLISECONDS));
 
         assertThat(result, equalTo(mockFuture));
     }

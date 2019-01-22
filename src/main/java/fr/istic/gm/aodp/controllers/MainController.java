@@ -35,24 +35,33 @@ import static javafx.scene.chart.PieChart.Data;
 @Getter
 @Setter
 public class MainController implements MonitorObserver {
-    @FXML public Button generateButton;
+    @FXML
+    public Button generateButton;
 
 
-    @FXML private ToggleGroup broadCastMethod;
+    @FXML
+    private ToggleGroup broadCastMethod;
 
-    @FXML private RadioButton atomicBroadcast;
+    @FXML
+    private RadioButton atomicBroadcast;
 
-    @FXML private RadioButton sequentialBroadcast;
+    @FXML
+    private RadioButton sequentialBroadcast;
 
-    @FXML private RadioButton causalBroadcast;
+    @FXML
+    private RadioButton causalBroadcast;
 
-    @FXML private PieChart pieChart1;
+    @FXML
+    private PieChart pieChart1;
 
-    @FXML private BarChart<Integer, Integer> barChart2;
+    @FXML
+    private BarChart<Integer, Integer> barChart2;
 
-    @FXML private BarChart<Integer, Integer> barChart3;
+    @FXML
+    private BarChart<Integer, Integer> barChart3;
 
-    @FXML private PieChart pieChart4;
+    @FXML
+    private PieChart pieChart4;
 
     private Generator generator;
 
@@ -74,10 +83,10 @@ public class MainController implements MonitorObserver {
         this.monitor1 = new MonitorImpl(MONITOR_1);
         this.monitor4 = new MonitorImpl(MONITOR_4);
 
-        this.scheduledExecutorService = Executors.newScheduledThreadPool(4);
-
-        this.canal1 = new Canal(this.monitor1, this.scheduledExecutorService, 500L);
-        this.canal4 = new Canal(this.monitor4, this.scheduledExecutorService, 2000L);
+        ScheduledExecutorService updateScheduledExecutorService = Executors.newScheduledThreadPool(2);
+        ScheduledExecutorService getUpdateScheduledExecutorService = Executors.newScheduledThreadPool(2);
+        this.canal1 = new Canal(this.monitor1, updateScheduledExecutorService, getUpdateScheduledExecutorService, 500L);
+        this.canal4 = new Canal(this.monitor4, updateScheduledExecutorService, getUpdateScheduledExecutorService, 2000L);
         this.generator.attach(this.canal1);
         this.generator.attach(this.canal4);
         this.monitor1.attach(this);
@@ -91,7 +100,7 @@ public class MainController implements MonitorObserver {
 
         // listener to change the broadcast method
         this.broadCastMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue == this.atomicBroadcast) {
+            if (newValue == this.atomicBroadcast) {
                 this.myDiffusion = new AtomicDiffusion();
             } else if (newValue == this.causalBroadcast) {
                 this.myDiffusion = new CausalDiffusion();
