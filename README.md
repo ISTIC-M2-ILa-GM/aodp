@@ -11,11 +11,16 @@ It corresponds to the implementation of two active object design pattern to link
 
 ## Diagrams
 
+### Class
 ![ClassUpdate](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/UpdateClass.png)
 ![ClassGetValue](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/getValueClass.png)
+
+### Update Sequence
 ![UpdateAsync1](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/UpdateAsync1.png)
 ![UpdateAsync2](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/UpdateAsync2.png)
 ![UpdateAsync3](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/UpdateAsync3.png)
+
+### GetValue Sequence
 ![getValueAsync1](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/getValueAsync1.png)
 ![getValueAsync2](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/getValueAsync2.png)
 ![getValueAsync3](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/getValueAsync3.png)
