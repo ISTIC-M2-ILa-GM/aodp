@@ -5,16 +5,19 @@ GPL v3 - Copyright Gautier and Gwénolé
 
 This project was created within the ISTIC Rennes school for the AOC module.
 
-It corresponds to the implementation of two active object design pattern to link a generator of value and some monitor to display values asynchronously, likes a observer pattern through a network.
-To manage the diffusion of a new value we used an strategy to apply different methods to transmit values, by default we can chose an atomic diffusion to always diffuse the same value to all monitors, a sequential diffusion to diffuse all value with the same sequence to all monitors and the causal diffusion to diffuse the value at the time when a get value is called.
+It corresponds to the implementation of two active object design pattern to link a generator of value and some monitor to display values asynchronously, likes an observer pattern through a network.
+
+To manage the diffusion of a new value we used a strategy to apply different methods to transmit values, by default we can chose an atomic diffusion to always diffuse the same value to all monitors, a sequential diffusion to diffuse all value with the same sequence to all monitors and the causal diffusion to diffuse the value at the time when a get value is called.
 
 # User interface
 
 ![ClassUpdate](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/gui.png)
 
-An user can change the different diffusion with the help of the radio button. The user can also generate a new value and see how each monitor will displey them.
+An user can change the different diffusion with the help of the radio buttons. The user can also generate a new value and see how each monitor will display them.
+
 Each monitor use a different retard, by default the retard is 500/800/1000/1200 ms.
-Each monitor use the two same scheduler (one for update and one for get value). We can't use one scheduler, because with only one scheduler, all threads of the pool could be filled by update and all get value called by the monitors will wait indefinitely.
+
+Each monitor use the two same scheduler (one scheduler for update and one other for get value). We can't use one scheduler, because with only one scheduler, all threads of the pool could be filled by update and all get value called by the monitors will wait indefinitely.
 
 # Architecture
 
@@ -22,7 +25,7 @@ Each monitor use the two same scheduler (one for update and one for get value). 
 
 The main representation of these diagrams are the active object pattern, all others patterns aren't displayed.
 
-We have represent the workflow with 3 diagrams on different point of view:
+We have represent the workflow with diagrams on different point of view:
 * from the generator,
 * from the scheduler,
 * from the monitor.
@@ -45,7 +48,7 @@ We have represent the workflow with 3 diagrams on different point of view:
 
 Part of this project is developed using test driven development (TDD) and pair programming.
 
-* Design pattern used: active object, strategy, observer, memento, factory and facade.
+We also used different design pattern likes active object, strategy, observer, memento, factory, and facade.
 
 ## Technology
 
@@ -69,6 +72,10 @@ Part of this project is developed using test driven development (TDD) and pair p
 ## Start
 
     Main class: fr.istic.gm.aodp.Main
+    
+Or with a jar:
+
+    java -jar aodp.jar
 
 ### Features done
 
@@ -86,3 +93,5 @@ Part of this project is developed using test driven development (TDD) and pair p
 
 This project help us to make an architecture with many design pattern for the function we want to implement. 
 We also learned to make an interface with JavaFX.
+
+We also learned how the active object is, by default, integrate in the language API. This project also help us to investigate some race condition and to keep in mind that it can be difficult to found this sort of error.
