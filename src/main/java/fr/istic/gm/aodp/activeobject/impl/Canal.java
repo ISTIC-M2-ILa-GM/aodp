@@ -26,7 +26,7 @@ public class Canal implements GeneratorAsync, ObserverGeneratorAsync {
     private GeneratorDiffusion generator;
 
     @Override
-    public Future update(GeneratorDiffusion generator) {
+    public Future<?> update(GeneratorDiffusion generator) {
 
         this.generator = generator;
         UpdateRunnable mi = new UpdateRunnableImpl(this, observerGenerator);

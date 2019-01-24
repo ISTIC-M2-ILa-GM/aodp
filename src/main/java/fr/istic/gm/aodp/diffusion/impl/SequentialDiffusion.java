@@ -25,9 +25,9 @@ public class SequentialDiffusion extends CaretakerImpl<Integer> implements Diffu
     private final MementoFactory<Integer> mementoFactory;
 
     @Override
-    public List<Future<Integer>> execute(GeneratorDiffusion generator) {
+    public List<Future<?>> execute(GeneratorDiffusion generator) {
         addMemento(mementoFactory.create(generator.getValue()));
-        List<Future<Integer>> futures = new ArrayList<>();
+        List<Future<?>> futures = new ArrayList<>();
         generator.getObservers().forEach(o -> futures.add(o.update(generator)));
         return futures;
     }

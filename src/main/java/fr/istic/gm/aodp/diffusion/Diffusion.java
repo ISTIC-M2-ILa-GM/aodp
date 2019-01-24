@@ -16,7 +16,7 @@ public interface Diffusion {
      * @param generator the generator to diffuse
      * @return the future
      */
-    List<Future<Integer>> execute(GeneratorDiffusion generator);
+    List<Future<?>> execute(GeneratorDiffusion generator);
 
     /**
      * Retrieve the generator value

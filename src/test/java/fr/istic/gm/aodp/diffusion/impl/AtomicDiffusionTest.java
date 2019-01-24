@@ -39,7 +39,7 @@ public class AtomicDiffusionTest {
     private GeneratorDiffusion mockGenerator;
 
     @Mock
-    private Future<Integer> mockFuture;
+    private Future mockFuture;
 
     @Mock
     private GeneratorAsync mockGeneratorAsync;
@@ -59,7 +59,7 @@ public class AtomicDiffusionTest {
         when(mockCanal.update(any())).thenReturn(mockFuture);
         when(mockGenerator.getValue()).thenReturn(10);
 
-        List<Future<Integer>> result = atomicDiffusion.execute(mockGenerator);
+        List<Future<?>> result = atomicDiffusion.execute(mockGenerator);
 
         verify(mockCanal).update(mockGenerator);
 

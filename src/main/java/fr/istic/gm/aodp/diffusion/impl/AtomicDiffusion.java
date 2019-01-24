@@ -31,7 +31,7 @@ public class AtomicDiffusion implements Diffusion {
     private int observerNumber;
 
     @Override
-    public List<Future<Integer>> execute(GeneratorDiffusion generator) {
+    public List<Future<?>> execute(GeneratorDiffusion generator) {
         if (generatorAsyncs != null && generatorAsyncs.size() != observerNumber) {
             throw new DiffusionException(FORBIDDEN);
         } else {
@@ -40,7 +40,7 @@ public class AtomicDiffusion implements Diffusion {
             this.observerNumber = generator.getObservers().size();
         }
 
-        List<Future<Integer>> futures = new ArrayList<>();
+        List<Future<?>> futures = new ArrayList<>();
         generator.getObservers().forEach(o -> futures.add(o.update(generator)));
         return futures;
     }

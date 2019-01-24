@@ -37,7 +37,7 @@ public class SequentialDiffusionTest {
     private GeneratorDiffusion mockGenerator;
 
     @Mock
-    private Future<Integer> mockFuture;
+    private Future mockFuture;
 
     @Mock
     private GeneratorAsync mockGeneratorAsync;
@@ -61,7 +61,7 @@ public class SequentialDiffusionTest {
         when(mockGenerator.getValue()).thenReturn(10);
         when(mockMementoFactory.create(any())).thenReturn(new IntMemento(10));
 
-        List<Future<Integer>> result = sequentialDiffusion.execute(mockGenerator);
+        List<Future<?>> result = sequentialDiffusion.execute(mockGenerator);
 
         verify(mockMementoFactory).create(10);
         verify(mockCanal).update(mockGenerator);

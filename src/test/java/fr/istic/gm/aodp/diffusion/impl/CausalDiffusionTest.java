@@ -34,7 +34,7 @@ public class CausalDiffusionTest {
     private GeneratorDiffusion mockGenerator;
 
     @Mock
-    private Future<Integer> mockFuture;
+    private Future mockFuture;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -51,7 +51,7 @@ public class CausalDiffusionTest {
         when(mockCanal.update(any())).thenReturn(mockFuture);
         when(mockGenerator.getValue()).thenReturn(10);
 
-        List<Future<Integer>> result = causalDiffusion.execute(mockGenerator);
+        List<Future<?>> result = causalDiffusion.execute(mockGenerator);
 
         verify(mockCanal).update(mockGenerator);
 
