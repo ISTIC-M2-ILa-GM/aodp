@@ -5,19 +5,19 @@ GPL v3 - Copyright Gautier and Gwénolé
 
 This project was created within the ISTIC Rennes school for the AOC module.
 
-It corresponds to the implementation of two active object design pattern to link a generator of value and some monitor to display values asynchronously, likes an observer pattern through a network.
+This project implements two active-object design patterns to link a random value generator with some monitors in order to display these values asynchronously; it acts like an observer pattern through a network.
 
-To manage the diffusion of a new value we used a strategy to apply different methods to transmit values, by default we can chose an atomic diffusion to always diffuse the same value to all monitors, a sequential diffusion to diffuse all value with the same sequence to all monitors and the causal diffusion to diffuse the value at the time when a get value is called.
+To manage the broadcast of a new value we used a strategy to allow several methods to transmit values. By default we can choose the atomic broadcast to always send the same value to all monitors, the sequential broadcast to send all values in the same order to all monitors and the causal broadcast to send values at the moment the getValue method is called.
 
 # User interface
 
 ![ClassUpdate](https://raw.githubusercontent.com/ISTIC-M2-ILa-GM/aodp/dev/spec/img/gui.png)
 
-An user can change the different diffusion with the help of the radio buttons. The user can also generate a new value and see how each monitor will display them.
+The user can change the different broadcast method using the radio buttons. The user can also generate a new value and see how each monitor will display them using the "Generate" button.
 
-Each monitor use a different retard, by default the retard is 500/800/1000/1200 ms.
+Each monitor has different delay, by default the delay is 500/800/1000/1200 ms.
 
-Each monitor use the two same scheduler (one scheduler for update and one other for get value). We can't use one scheduler, because with only one scheduler, all threads of the pool could be filled by update and all get value called by the monitors will wait indefinitely.
+Every monitor uses both schedulers (one scheduler to update and one other to get value). We can't use one scheduler, because with only one scheduler, all threads of the pool could be filled by update and all get value called by the monitors will wait indefinitely.
 
 # Architecture
 
@@ -91,7 +91,7 @@ Or with a jar:
 
 ## Conclusion
 
-This project help us to make an architecture with many design pattern for the function we want to implement. 
-We also learned to make an interface with JavaFX.
+This project help us to build an architecture with many design patterns for the feature we want to implement. 
+We also learned to build an interface with JavaFX.
 
-We also learned how the active object is, by default, integrate in the language API. This project also help us to investigate some race condition and to keep in mind that it can be difficult to found this sort of error.
+We also learned how the active-object pattern is, by default, integrated in the Java API. This project also helps us to investigate some race condition and to keep in mind that it can be difficult to find this sort of error.
