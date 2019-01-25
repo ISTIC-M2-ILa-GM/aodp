@@ -1,0 +1,122 @@
+@startuml
+hide empty members
+allow_mixing
+
+usecase "Update: ActiveObject" as uao
+
+package Java {
+    interface f as "Future"<T> {
+        +synchronize()
+        +get()
+    }
+    interface s as "ScheduledExecutorService" {
+        +schedule(c: callable, timeout: Duration)
+    }
+    interface cb as "Runnable" {
+        +call()
+    }
+}
+class c as "Canal" {
+    +update(g: GeneratorDiffusion): Future
+    +getValue(): Future
+}
+interface ga as "GeneratorAsync" {
+    +getValue(): Future
+}
+interface oga as "ObsGeneratorAsync" {
+    +update(g: GeneratorDiffusion): Future
+}
+interface g as "Generator" {
+    +getValue(): int
+}
+'class umi as "GetValueCallable" {
+'    +call(): int
+'}
+class vmi as "UpdateRunnable" {
+    +run()
+}
+class m as "Monitor" {
+    +update(g: Generator)
+}
+interface og as "ObsGenerator" {
+    +update(g: Generator)
+}
+
+uao ..> c: Proxy
+uao ..> cb: Method Invocator
+uao ..> g: Client
+uao ..> s: Scheduler
+uao ..> oga: Service
+uao ..> og: Servant
+uao ..> vmi: Concrete MI
+uao ..> f: Future
+
+'umi ..|> cb
+vmi ..|> cb
+c ..|> ga
+c ..|> oga
+m ..|> og
+newpage
+hide empty members
+allow_mixing
+
+usecase "GetValue: ActiveObject" as vao
+
+package Java {
+    interface f as "Future"<T> {
+        +synchronize()
+        +get()
+    }
+    interface s as "ScheduledExecutorService" {
+        +schedule(c: callable, timeout: Duration)
+    }
+    interface cb as "Callable"<T> {
+        +call()
+    }
+}
+class c as "Canal" {
+    +update(g: GeneratorDiffusion): Future
+    +getValue(): Future
+}
+interface ga as "GeneratorAsync" {
+    +getValue(): Future
+}
+interface oga as "ObsGeneratorAsync" {
+    +update(g: GeneratorDiffusion): Future
+}
+interface g as "Generator" {
+    +getValue(): int
+}
+interface gd as "GeneratorDiffusion" {
+    +getDiffusion(): Diffusion
+}
+class umi as "GetValueCallable" {
+    +call(): int
+}
+'class vmi as "UpdateRunnable" {
+'    +run()
+'}
+class m as "Monitor" {
+    +update(g: Generator)
+}
+interface og as "ObsGenerator" {
+    +update(g: Generator)
+}
+
+vao ..> c: Proxy
+vao ..> cb: Method Invocator
+vao ..> og: Client
+vao ..> s: Scheduler
+vao ..> f: Future
+vao ..> g: Servant
+vao ..> ga: Service
+vao ..> umi: Concrete MI
+
+umi ..|> cb
+'vmi ..|> cb
+c ..|> ga
+c ..|> oga
+m ..|> og
+
+gd --|> g
+@enduml

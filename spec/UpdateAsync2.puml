@@ -1,0 +1,28 @@
+@startuml
+box "Scheduler"
+participant "s : Scheduler" as s
+end box
+box "Method Invocation"
+participant "mi : UpdateCallable" as mi
+end box
+box "Servant"
+    participant "m: Monitor" as m
+end box
+box "Future"
+    participant "f : Future" as f
+end box
+activate m
+activate s
+s -> mi: call()
+activate mi
+mi -> m: update(c)
+== Go to getValueAsync1 ==
+deactivate mi
+m --> mi
+activate mi
+mi --> s
+deactivate mi
+s -> f: setDone()
+activate f
+deactivate f
+@enduml

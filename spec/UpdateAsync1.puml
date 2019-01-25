@@ -1,0 +1,31 @@
+@startuml
+box "Client"
+    participant "g : Generator" as g
+    participant "d : Diffusion" as d
+end box
+box "Proxy"
+    participant "c: canal" as c
+end box
+box "Scheduler"
+participant "s : ScheduledExecutorService" as s
+end box
+
+activate g
+activate c
+activate s
+g -> g: setValue(v)
+g -> d: execute(g)
+deactivate g
+activate d
+d -> c: update(g)
+deactivate d
+create "mi : UpdateCallable" as mi
+c -> mi: create()
+c -> s: schedule(mi)
+s --> c: f
+c --> d: f
+activate d
+d --> g: f
+deactivate d
+activate g
+@enduml
